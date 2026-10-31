@@ -37,6 +37,8 @@
     panel.className = "panel firmware-panel";
     panel.innerHTML = `<h2>Catalogo precompilado: instalar sin compilar</h2>
       <p>Imagenes Bricohams y F4HWN oficiales alojadas con esta web. Solo UV-K1 y UV-K5 V3 (PY32); nunca UV-K5 V1. El SHA-256 verifica integridad, no el arranque ni la compatibilidad fisica. Los modulos Bricohams son Beta.</p>
+      <p><strong>CHIRP y firmware v6.1.0:</strong> descarga el <a href="precompiled/chirp/f4hwn.chirp.v6.1.0.py" download>controlador F4HWN v6.1.0</a> y cargalo mediante Archivo &gt; Cargar modulo. Selecciona Quansheng / UV-K1 &amp; UV-K5 V3 (F4HWN), no UV-K5 generico, y descarga de nuevo desde la radio. <a href="ayuda-quansheng.html#chirp-v6-1-0">Instrucciones y recuperacion de canales</a>; <a href="precompiled/chirp/manifest.json">origen y SHA-256</a>.</p>
+      <p>Una imagen marcada como firmware no soportado sigue siendo de solo lectura: cambiar de firmware o de modelo no convierte ese archivo. Conserva el respaldo y migra sus canales por CSV a la descarga nueva. Antes de escribir, respalda la configuracion y la calibracion; no cargues imagenes de otros modelos.</p>
       <label for="precompiled-entry">Imagen</label><select id="precompiled-entry" disabled><option>Cargando catalogo...</option></select>
       <p id="precompiled-info" role="status">Verificando indice...</p>
       <label class="check"><input id="precompiled-confirm" type="checkbox"> Confirmo modelo y acepto la condicion Beta cuando corresponda.</label>

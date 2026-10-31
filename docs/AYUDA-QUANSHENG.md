@@ -105,6 +105,36 @@ Labs y Fusion, y las oficiales F4HWN Fusion, FieldOps, Transfer y Labs.
 No requiere seleccionar una carpeta. Es el mismo catalogo en servidor local
 y en la exportacion estatica. No es una descarga dinamica de cualquier URL.
 
+### CHIRP v6.1.0
+
+Las nueve imagenes de este catalogo usan el protocolo F4HWN v6.1.0. En CHIRP,
+seleccionar **Quansheng / UV-K5** generico puede identificar la radio y aun asi
+marcar su imagen como firmware no soportado y bloquear edicion y carga. Ese
+mensaje no demuestra un fallo de conexion ni se corrige recompilando la misma
+version o falseando su identificacion.
+
+1. Conserva la imagen existente y los respaldos de configuracion/calibracion.
+2. Descarga el [controlador oficial F4HWN v6.1.0](../precompiled/chirp/f4hwn.chirp.v6.1.0.py).
+   En CHIRP, usa **Archivo > Cargar modulo** para abrir ese archivo Python.
+   No cambies las preferencias de seguridad para cargar modulos automaticamente.
+3. En **Radio > Descargar de la radio**, selecciona **Quansheng** y
+   **UV-K1 & UV-K5 V3 (F4HWN)**, con el puerto de tu radio y la radio encendida
+   normalmente. Haz una descarga nueva y guardala con otro nombre.
+4. Si necesitas recuperar canales de un archivo anterior, exportalos a CSV e
+   importalos en esa descarga nueva. Comprueba frecuencias, tonos, desplazamientos
+   y bloqueo TX; no renombres ni fuerces como escribible la imagen restringida.
+5. Antes de cargar cambios, guarda un respaldo nuevo y conserva la calibracion.
+   No selecciones cargar calibracion ni ajustes avanzados para migrar canales.
+
+La imagen creada con el controlador generico sigue siendo de solo lectura:
+cambiar de firmware o de modelo no convierte su formato. El driver v6.3.0 de
+los ejemplos corresponde a otra publicacion; para este catalogo usa v6.1.0.
+El [manifiesto](../precompiled/chirp/manifest.json) fija origen y SHA-256;
+el modulo se distribuye sin cambios bajo GPL-2.0-o-posterior, con
+[licencia](../precompiled/chirp/COPYING.txt) y [atribucion](../precompiled/chirp/NOTICE.txt).
+Esto documenta la seleccion correcta del controlador; no certifica pruebas
+fisicas de lectura/escritura o arranque de las nueve variantes.
+
 1. Seleccionar UV-K1 o UV-K5 V3 y la imagen del catalogo.
 2. Confirmar modelo y condicion Beta de las derivadas Bricohams.
 3. **Descargar, verificar y preparar para slot** comprueba tamano, SHA-256 y

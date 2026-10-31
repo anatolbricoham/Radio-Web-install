@@ -44,6 +44,22 @@ test("app refuses to run framed and paints the mode badge", () => {
   assert.match(app, /Local · instalado/);
 });
 
+test("CHIRP driver downloads as Python source, with intact release bytes", async () => {
+  const server = createServer({}, {});
+  server.listen(0, "127.0.0.1");
+  await once(server, "listening");
+  try {
+    const response = await fetch(`http://127.0.0.1:${server.address().port}/precompiled/chirp/f4hwn.chirp.v6.1.0.py`);
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get("content-type"), "text/plain; charset=utf-8");
+    assert.equal(response.headers.get("content-disposition"), 'attachment; filename="f4hwn.chirp.v6.1.0.py"');
+    assert.equal(require("node:crypto").createHash("sha256").update(Buffer.from(await response.arrayBuffer())).digest("hex"),
+      "ccbf2ec24c5bfb49ab089a2ae0289a305f3ed6812f2de90a36e6186961913462");
+  } finally {
+    server.close();
+  }
+});
+
 // Firmware (Task 3)
 require("../firmware-catalog.js");
 const { createHash } = require("node:crypto");

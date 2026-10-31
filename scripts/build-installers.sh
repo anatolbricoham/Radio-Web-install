@@ -45,6 +45,8 @@ stage_app() {
   mkdir -p "$destination/precompiled/apps"
   cp "$root"/precompiled/*.bin "$root"/precompiled/*.json "$root"/precompiled/*.txt "$destination/precompiled/"
   cp "$root"/precompiled/apps/*.app "$root"/precompiled/apps/*.json "$destination/precompiled/apps/"
+  mkdir -p "$destination/precompiled/chirp"
+  cp "$root"/precompiled/chirp/*.py "$root"/precompiled/chirp/*.json "$root"/precompiled/chirp/*.txt "$destination/precompiled/chirp/"
   mkdir -p "$destination/data/channel-templates"
   cp "$root"/data/channel-templates/*.json "$destination/data/channel-templates/"
   mkdir -p "$destination/node_modules"

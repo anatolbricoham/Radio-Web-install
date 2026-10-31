@@ -103,6 +103,36 @@ Labs, and Fusion, plus the official F4HWN Fusion, FieldOps, Transfer, and Labs.
 No folder selection is required. The same catalog is used on the local server
 and in the static export. It is not a dynamic download from an arbitrary URL.
 
+### CHIRP v6.1.0
+
+All nine catalog images use the F4HWN v6.1.0 protocol. Selecting generic
+**Quansheng / UV-K5** in CHIRP can identify the radio but mark its image as
+unsupported firmware and block editing and upload. This does not establish a
+connection failure; rebuilding the same version or falsifying its identity does
+not correct the driver selection.
+
+1. Keep the existing image and configuration/calibration backups.
+2. Download the [official F4HWN v6.1.0 driver](../../../precompiled/chirp/f4hwn.chirp.v6.1.0.py).
+   In CHIRP, use **File > Load module** to open that Python file.
+   Do not change security preferences to load modules automatically.
+3. In **Radio > Download from radio**, select **Quansheng** and
+   **UV-K1 & UV-K5 V3 (F4HWN)**, the radio's port, and normal operating mode.
+   Make a fresh download and save it under a different name.
+4. To recover channels from an older file, export them as CSV and import them
+   into the fresh download. Check frequencies, tones, offsets and TX lock;
+   do not rename or force the restricted image to become writable.
+5. Before uploading changes, save a fresh backup and retain calibration.
+   Do not select calibration or advanced-settings upload to migrate channels.
+
+An image created with the generic driver remains read-only: changing firmware
+or model does not convert its format. The example v6.3.0 driver belongs to a
+different release; use v6.1.0 with this catalog.
+The [manifest](../../../precompiled/chirp/manifest.json) pins source and SHA-256;
+the unchanged module is distributed under GPL-2.0-or-later, with
+[license](../../../precompiled/chirp/COPYING.txt) and [attribution](../../../precompiled/chirp/NOTICE.txt).
+This documents correct driver selection, not physical read/write or boot
+validation of all nine variants.
+
 1. Select UV-K1 or UV-K5 V3 and an image from the catalog.
 2. Confirm the model and Beta status of Bricohams derivatives.
 3. **Download, verify, and prepare for slot** checks size, SHA-256, and PY32

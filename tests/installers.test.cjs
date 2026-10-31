@@ -59,6 +59,8 @@ test("los instalables incluyen el catalogo y todos los recursos web permitidos",
       assert(build.includes('"$root"/precompiled/*.bin "$root"/precompiled/*.json "$root"/precompiled/*.txt'));
     } else if (/^precompiled\/apps\/[^/]+\.(app|json)$/.test(file)) {
       assert(build.includes('"$root"/precompiled/apps/*.app "$root"/precompiled/apps/*.json'));
+    } else if (/^precompiled\/chirp\/[^/]+\.(py|json|txt)$/.test(file)) {
+      assert(build.includes('"$root"/precompiled/chirp/*.py "$root"/precompiled/chirp/*.json "$root"/precompiled/chirp/*.txt'));
     } else {
       assert.fail(`Recurso ausente del instalador: ${file}`);
     }

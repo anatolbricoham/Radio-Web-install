@@ -12,6 +12,7 @@ const BASE_FILES = [
   "precompiled-catalog.js", "quansheng-factory.js", "precompiled/catalog.json", "precompiled/LICENSE.txt",
   "precompiled/APACHE-2.0.txt", "precompiled/NOTICE.txt", "precompiled/BRICOHAMS-NOTICE.txt",
   "precompiled/apps/catalog.json",
+  ...["f4hwn.chirp.v6.1.0.py", "manifest.json", "NOTICE.txt", "COPYING.txt"].map(name => `precompiled/chirp/${name}`),
   ...["SystemInfo", "BroadcastFM", "Cube3D", "Tetris", "Breakout", "Minesweeper"].map(id => `precompiled/apps/${id}.app`),
   ...["bricohams-ardf", "bricohams-satellite", "bricohams-spectrum", "bricohams-labs", "bricohams-fusion",
     "f4hwn-fusion", "f4hwn-fieldops", "f4hwn-transfer", "f4hwn-labs"].map(id => `precompiled/${id}.bin`),
@@ -204,7 +205,8 @@ return http.createServer(async (request, response) => {
     const body = await fs.readFile(filename);
     const type = name.endsWith(".bin") ? "application/octet-stream" : name.endsWith(".json") ? "application/json; charset=utf-8" :
       name.endsWith(".txt") ? "text/plain; charset=utf-8" : name.endsWith(".png") ? "image/png" : name.endsWith(".jpg") ? "image/jpeg" : name.endsWith(".svg") ? "image/svg+xml" : `${name.endsWith(".html") ? "text/html" : name.endsWith(".css") ? "text/css" : "text/javascript"}; charset=utf-8`;
-    response.writeHead(200, { "Content-Type": type, "Content-Length": body.length });
+    if (name.endsWith(".py")) response.setHeader("Content-Disposition", `attachment; filename="${path.basename(name)}"`);
+    response.writeHead(200, { "Content-Type": name.endsWith(".py") ? "text/plain; charset=utf-8" : type, "Content-Length": body.length });
     response.end(request.method === "HEAD" ? undefined : body);
   } catch (error) {
     console.error(`No se pudo servir ${name}: ${error.message}`);

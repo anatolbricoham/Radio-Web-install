@@ -104,6 +104,36 @@ Labs und Fusion sowie die offiziellen F4HWN Fusion, FieldOps, Transfer und Labs.
 Ein Ordner muss nicht ausgewählt werden. Derselbe Katalog gilt für den lokalen Server
 und den statischen Export. Es handelt sich nicht um einen dynamischen Download beliebiger URLs.
 
+### CHIRP v6.1.0
+
+Alle neun Katalogabbilder verwenden das F4HWN-v6.1.0-Protokoll. Der generische
+CHIRP-Eintrag **Quansheng / UV-K5** kann das Gerät erkennen, sein Abbild jedoch
+als nicht unterstützte Firmware markieren und Bearbeitung sowie Upload sperren.
+Das beweist keinen Verbindungsfehler. Dieselbe Version neu zu kompilieren oder
+ihre Kennung zu fälschen korrigiert die Treiberauswahl nicht.
+
+1. Vorhandenes Abbild und Sicherungen von Konfiguration/Kalibrierung aufbewahren.
+2. Den [offiziellen F4HWN-v6.1.0-Treiber](../../../precompiled/chirp/f4hwn.chirp.v6.1.0.py) herunterladen.
+   Diese Python-Datei in CHIRP über **Datei > Modul laden** öffnen.
+   Keine Sicherheitsoptionen zum automatischen Laden von Modulen ändern.
+3. Unter **Funkgerät > Vom Funkgerät herunterladen** **Quansheng** und
+   **UV-K1 & UV-K5 V3 (F4HWN)** sowie den Geräteport auswählen; das Gerät muss
+   normal eingeschaltet sein. Neu auslesen und unter anderem Namen speichern.
+4. Kanäle aus einer alten Datei als CSV exportieren und in das neue Abbild
+   importieren. Frequenzen, Töne, Ablagen und TX-Sperre prüfen; das eingeschränkte
+   Abbild nicht umbenennen oder gewaltsam beschreibbar machen.
+5. Vor Änderungen eine neue Sicherung erstellen und die Kalibrierung behalten.
+   Zur Kanalmigration weder Kalibrierung noch erweiterte Einstellungen hochladen.
+
+Ein mit dem generischen Treiber erstelltes Abbild bleibt schreibgeschützt:
+Ein Firmware- oder Modellwechsel konvertiert das Format nicht. Der Beispieltreiber
+v6.3.0 gehört zu einer anderen Veröffentlichung; hier v6.1.0 verwenden.
+Das [Manifest](../../../precompiled/chirp/manifest.json) legt Quelle und SHA-256 fest;
+das unveränderte Modul steht unter GPL-2.0-oder-später, mit
+[Lizenz](../../../precompiled/chirp/COPYING.txt) und [Urheberangaben](../../../precompiled/chirp/NOTICE.txt).
+Dies beschreibt die korrekte Treiberauswahl, bestätigt jedoch keine physischen
+Lese-/Schreib- oder Starttests aller neun Varianten.
+
 1. UV-K1 oder UV-K5 V3 und das Katalog-Image auswählen.
 2. Modell und Beta-Status der Bricohams-Ableitungen bestätigen.
 3. **Herunterladen, prüfen und für Slot vorbereiten** prüft Größe, SHA-256 und

@@ -12,6 +12,15 @@ const root = path.join(__dirname, "..");
 // Generated docs are stored with LF; a Windows checkout with core.autocrlf turns them into CRLF.
 const read = name => fs.readFileSync(path.join(root, name), "utf8").replace(/\r\n/g, "\n");
 
+test("CHIRP help downloads stay local in all five languages", () => {
+  for (const lang of HELP_LANGS) {
+    const source = lang === "es" ? "AYUDA-QUANSHENG.md" : `i18n/${lang}/AYUDA-QUANSHENG.md`;
+    const html = render(read(`docs/${source}`), source, { lang }).body;
+    for (const name of ["f4hwn.chirp.v6.1.0.py", "manifest.json", "NOTICE.txt", "COPYING.txt"])
+      assert.ok(html.includes(`href="precompiled/chirp/${name}"`), `${lang}: ${name}`);
+  }
+});
+
 test("cada opcion del catalogo tiene explicacion y las matrices conservan valores y ausencias", () => {
   const text = read("docs/AYUDA-OPCIONES-F4HWN.md");
   checkOptionCoverage(text);

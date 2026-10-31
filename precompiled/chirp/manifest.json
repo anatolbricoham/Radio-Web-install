@@ -1,0 +1,14 @@
+{
+  "format": "bricohams-chirp-driver",
+  "version": 1,
+  "firmwareVersion": "v6.1.0",
+  "vendor": "Quansheng",
+  "model": "UV-K1 & UV-K5 V3 (F4HWN)",
+  "path": "precompiled/chirp/f4hwn.chirp.v6.1.0.py",
+  "source": "https://github.com/armel/uv-k1-k5v3-firmware-custom/releases/download/v6.1.0/f4hwn.chirp.v6.1.0.py",
+  "sha256": "ccbf2ec24c5bfb49ab089a2ae0289a305f3ed6812f2de90a36e6186961913462",
+  "license": "GPL-2.0-or-later",
+  "licensePath": "precompiled/chirp/COPYING.txt",
+  "noticePath": "precompiled/chirp/NOTICE.txt",
+  "modified": false
+}

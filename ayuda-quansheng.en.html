@@ -46,6 +46,16 @@
 <p>Protocol reference: UV Studio, revision <code>e7aa946f6de002559e1aaf3f91765db7fc2ed567</code>, <code>k5viewer.js</code>, and <code>rf-log.js</code>. The local implementation does not send PTT, keypresses, reboot, or persistent commands. The COM4 test on 26-10-2026 received <strong>24 LCD frames and one RF frame</strong> from firmware that remained running, with no incomplete data. USB DTR had to be enabled; Web Serial explicitly sets it for Quansheng. The radio did not send stored RF entries, so no physical validation is claimed for a history that was not received. The history parser, mutual exclusion, web screen, and CSV were also checked with test frames. K5Viewer must be enabled in the active firmware.</p>
 <h2 id="catalogo-precompilado-sin-herramientas-de-compilacion">Precompiled catalog without build tools</h2>
 <p>The website includes nine v6.1.0 images: Bricohams ARDF, Satellite, Spectrum, Labs, and Fusion, plus the official F4HWN Fusion, FieldOps, Transfer, and Labs. No folder selection is required. The same catalog is used on the local server and in the static export. It is not a dynamic download from an arbitrary URL.</p>
+<h3 id="chirp-v6-1-0">CHIRP v6.1.0</h3>
+<p>All nine catalog images use the F4HWN v6.1.0 protocol. Selecting generic <strong>Quansheng / UV-K5</strong> in CHIRP can identify the radio but mark its image as unsupported firmware and block editing and upload. This does not establish a connection failure; rebuilding the same version or falsifying its identity does not correct the driver selection.</p>
+<ol>
+<li>Keep the existing image and configuration/calibration backups.</li>
+<li>Download the <a href="precompiled/chirp/f4hwn.chirp.v6.1.0.py">official F4HWN v6.1.0 driver</a>. In CHIRP, use <strong>File &gt; Load module</strong> to open that Python file. Do not change security preferences to load modules automatically.</li>
+<li>In <strong>Radio &gt; Download from radio</strong>, select <strong>Quansheng</strong> and <strong>UV-K1 &amp; UV-K5 V3 (F4HWN)</strong>, the radio&#39;s port, and normal operating mode. Make a fresh download and save it under a different name.</li>
+<li>To recover channels from an older file, export them as CSV and import them into the fresh download. Check frequencies, tones, offsets and TX lock; do not rename or force the restricted image to become writable.</li>
+<li>Before uploading changes, save a fresh backup and retain calibration. Do not select calibration or advanced-settings upload to migrate channels.</li>
+</ol>
+<p>An image created with the generic driver remains read-only: changing firmware or model does not convert its format. The example v6.3.0 driver belongs to a different release; use v6.1.0 with this catalog. The <a href="precompiled/chirp/manifest.json">manifest</a> pins source and SHA-256; the unchanged module is distributed under GPL-2.0-or-later, with <a href="precompiled/chirp/COPYING.txt">license</a> and <a href="precompiled/chirp/NOTICE.txt">attribution</a>. This documents correct driver selection, not physical read/write or boot validation of all nine variants.</p>
 <ol>
 <li>Select UV-K1 or UV-K5 V3 and an image from the catalog.</li>
 <li>Confirm the model and Beta status of Bricohams derivatives.</li>

@@ -1,0 +1,13 @@
+Official F4HWN v6.1.0 CHIRP driver, distributed without modification.
+Source: https://github.com/armel/uv-k1-k5v3-firmware-custom/releases/download/v6.1.0/f4hwn.chirp.v6.1.0.py
+SHA-256: ccbf2ec24c5bfb49ab089a2ae0289a305f3ed6812f2de90a36e6186961913462
+
+Original driver copyright 2023 Jacek Lipkowski.
+Adaptations by EGZUMER, JOC2 and F4HWN; based on template.py,
+copyright 2012 Dan Smith. Full original attribution remains in the source.
+
+GNU General Public License version 2 or, at your option, any later version.
+See COPYING.txt for the GPL-2 text. This driver retains its own license;
+the Apache-2.0 firmware license does not apply to this Python source.
+No warranty. Distribution and matching version do not certify physical
+validation of every firmware variant or authorize writing another model's image.

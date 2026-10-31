@@ -1,12 +1,40 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const { createHash } = require("node:crypto");
+const fs = require("node:fs");
+const path = require("node:path");
 const R = require("../radio-core.js");
 require("../f4hwn-options.js");
 require("../custom-firmware-ui.js");
 
 const sha = bytes => createHash("sha256").update(bytes).digest("hex");
 const file = (name, text) => ({ name, bytes: new TextEncoder().encode(text) });
+
+test("las nueve imagenes publicadas enlazan el modulo CHIRP oficial de su version, intacto y con licencia", () => {
+  const root = path.join(__dirname, "..");
+  const read = name => fs.readFileSync(path.join(root, name), "utf8");
+  const manifest = JSON.parse(read("precompiled/chirp/manifest.json"));
+  const catalog = JSON.parse(read("precompiled/catalog.json"));
+  assert.equal(catalog.entries.length, 9);
+  for (const entry of catalog.entries) assert.equal(entry.version, manifest.firmwareVersion, entry.id);
+  const bytes = fs.readFileSync(path.join(root, manifest.path));
+  assert.equal(sha(bytes), "ccbf2ec24c5bfb49ab089a2ae0289a305f3ed6812f2de90a36e6186961913462");
+  assert.equal(sha(bytes), manifest.sha256);
+  assert.equal(manifest.modified, false);
+  assert.equal(manifest.source, "https://github.com/armel/uv-k1-k5v3-firmware-custom/releases/download/v6.1.0/f4hwn.chirp.v6.1.0.py");
+  assert.equal(manifest.license, "GPL-2.0-or-later");
+  assert.match(read(manifest.licensePath), /Version 2, June 1991/);
+  assert.match(read(manifest.noticePath), /Jacek Lipkowski/);
+  assert.ok(bytes.toString("utf8").includes(`MODEL = "${manifest.model}"`));
+  const panel = read("precompiled-catalog.js");
+  assert.ok(panel.includes(`href="${manifest.path}" download`));
+  assert.match(panel, /UV-K5 generico/);
+  assert.match(panel, /descarga de nuevo desde la radio/);
+  assert.match(panel, /migra sus canales por CSV/);
+  const { ALLOWED_FILES } = require("../server.cjs");
+  for (const asset of [manifest.path, manifest.licensePath, manifest.noticePath, "precompiled/chirp/manifest.json"])
+    assert.ok(ALLOWED_FILES.includes(asset), `El servidor y Pages deben distribuir ${asset}`);
+});
 
 test("el catalogo F4HWN fija el commit y Labs admite apps", () => {
   const catalog = R.F4HWN_OPTIONS;

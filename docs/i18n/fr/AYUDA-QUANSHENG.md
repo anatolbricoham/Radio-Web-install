@@ -105,6 +105,36 @@ Labs et Fusion, ainsi que les images officielles F4HWN Fusion, FieldOps, Transfe
 Aucun dossier n’est à sélectionner. Le même catalogue est disponible sur le serveur local
 et dans l’exportation statique. Il ne s’agit pas d’un téléchargement dynamique depuis une URL quelconque.
 
+### CHIRP v6.1.0
+
+Les neuf images du catalogue utilisent le protocole F4HWN v6.1.0. Choisir
+**Quansheng / UV-K5** générique dans CHIRP peut identifier la radio mais marquer
+son image comme firmware non pris en charge, bloquant modification et envoi.
+Ce message ne prouve pas un défaut de connexion ; recompiler la même version
+ou falsifier son identité ne corrige pas le choix du pilote.
+
+1. Conserver l'image existante et les sauvegardes de configuration/étalonnage.
+2. Télécharger le [pilote officiel F4HWN v6.1.0](../../../precompiled/chirp/f4hwn.chirp.v6.1.0.py).
+   Dans CHIRP, ouvrir ce fichier Python par **Fichier > Charger un module**.
+   Ne pas modifier les préférences de sécurité pour charger les modules automatiquement.
+3. Dans **Radio > Télécharger depuis la radio**, sélectionner **Quansheng** et
+   **UV-K1 & UV-K5 V3 (F4HWN)**, le port de la radio et le fonctionnement normal.
+   Effectuer un nouveau téléchargement et l'enregistrer sous un autre nom.
+4. Pour récupérer les canaux d'un ancien fichier, les exporter en CSV puis les
+   importer dans ce nouveau téléchargement. Vérifier fréquences, tonalités,
+   décalages et verrouillage TX ; ne pas renommer ni forcer l'image restreinte en écriture.
+5. Avant tout envoi, créer une nouvelle sauvegarde et conserver l'étalonnage.
+   Ne pas envoyer l'étalonnage ni les réglages avancés pour migrer des canaux.
+
+L'image créée avec le pilote générique reste en lecture seule : changer de
+firmware ou de modèle ne convertit pas son format. Le pilote v6.3.0 des exemples
+appartient à une autre publication ; utiliser v6.1.0 avec ce catalogue.
+Le [manifeste](../../../precompiled/chirp/manifest.json) fixe la source et le SHA-256 ;
+le module inchangé est distribué sous GPL-2.0-ou-ultérieure, avec
+[licence](../../../precompiled/chirp/COPYING.txt) et [attribution](../../../precompiled/chirp/NOTICE.txt).
+Ces instructions documentent le bon choix de pilote, sans certifier les essais
+physiques de lecture/écriture ou de démarrage des neuf variantes.
+
 1. Sélectionner UV-K1 ou UV-K5 V3 et l’image du catalogue.
 2. Confirmer le modèle et la condition Beta des versions dérivées de Bricohams.
 3. **Télécharger, vérifier et préparer pour le slot** vérifie la taille, le SHA-256 et
